@@ -1,99 +1,82 @@
 # PySpark-Multi-Class-Network-Intrusion-Detection
 
-Scalable machine-learning project for classifying network traffic using PySpark MLlib on a large multi-class cybersecurity dataset.
+Scalable machine-learning project for classifying network traffic using **PySpark MLlib** on a large multi-class cybersecurity dataset.
 
-Overview
+## Overview
 
 This project explores large-scale network intrusion detection using distributed machine-learning techniques in Apache Spark.
 
-The pipeline processes approximately 2.52 million network records and uses 52 numerical features to classify traffic into 7 classes.
+The pipeline processes approximately **2.52 million network records** and uses **52 numerical features** to classify traffic into **7 classes**.
 
 The project includes supervised learning, ensemble learning, dimensionality reduction, clustering, preprocessing, cross-validation, and model evaluation.
 
-Project Goals
+## Project Goals
 
-Build a scalable machine-learning pipeline using PySpark
+- Build a scalable machine-learning pipeline using PySpark
+- Perform multi-class network traffic classification
+- Handle class imbalance
+- Compare tree-based models
+- Tune an ensemble model using cross-validation
+- Explore unsupervised structure using PCA and K-Means
+- Evaluate results using suitable classification and clustering metrics
 
-Perform multi-class network traffic classification
-
-Handle class imbalance
-
-Compare tree-based models
-
-Tune an ensemble model using cross-validation
-
-Explore unsupervised structure using PCA and K-Means
-
-Evaluate results using suitable classification and clustering metrics
-
-Dataset
+## Dataset
 
 The project uses a large network-traffic dataset derived from cybersecurity traffic records.
 
 Key characteristics:
 
-Approximately 2.52 million records
+- Approximately **2.52 million records**
+- **52 numerical input features**
+- **7 traffic / attack classes**
+- Multi-class classification problem
 
-52 numerical input features
+> The raw dataset is not included in this repository because of its size.
 
-7 traffic / attack classes
-
-Multi-class classification problem
-
-The raw dataset is not included in this repository because of its size.
-
-Data Processing
+## Data Processing
 
 The preprocessing workflow includes:
 
-Data loading and schema inspection
+- Data loading and schema inspection
+- Invalid-value handling
+- Missing-value processing
+- Median imputation
+- Numeric feature selection
+- Feature vector creation using `VectorAssembler`
+- Label preparation
+- Train / test splitting
+- Class weighting for imbalanced labels
+- Caching where useful for repeated Spark operations
 
-Invalid-value handling
+## Supervised Models
 
-Missing-value processing
-
-Median imputation
-
-Numeric feature selection
-
-Feature vector creation using VectorAssembler
-
-Label preparation
-
-Train / test splitting
-
-Class weighting for imbalanced labels
-
-Caching where useful for repeated Spark operations
-
-Supervised Models
-
-Decision Tree
+### Decision Tree
 
 A Decision Tree model was used as a baseline to provide an interpretable reference point.
 
-Weighted Random Forest
+### Weighted Random Forest
 
 A Random Forest model was trained with class weighting to improve performance across minority classes.
 
-Hyperparameters were tuned using 3-fold cross-validation.
+Hyperparameters were tuned using **3-fold cross-validation**.
 
-Unsupervised Learning
+## Unsupervised Learning
 
 The project also includes:
 
-PCA
+### PCA
 
 Principal Component Analysis was used to reduce dimensionality before clustering.
 
-K-Means
+### K-Means
 
 K-Means clustering was applied to explore whether natural groups in the feature space aligned with network traffic categories.
 
 Cluster quality was assessed using silhouette analysis.
 
-Machine-Learning Pipeline
+## Machine-Learning Pipeline
 
+```text
 Raw Network Data
         ↓
 Cleaning / Validation
@@ -119,57 +102,42 @@ PCA
 K-Means
         ↓
 Evaluation & Comparison
+```
 
-Evaluation
+## Evaluation
 
 Classification models can be assessed using:
 
-Accuracy
-
-Precision
-
-Recall
-
-F1-score
-
-Per-class performance
-
-Confusion matrix
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Per-class performance
+- Confusion matrix
 
 Clustering analysis includes:
 
-Silhouette score
+- Silhouette score
+- Cluster-size inspection
+- Comparison between clusters and known traffic labels
 
-Cluster-size inspection
+## Technologies
 
-Comparison between clusters and known traffic labels
+- Python
+- PySpark
+- Apache Spark
+- Spark MLlib
+- Random Forest
+- Decision Tree
+- PCA
+- K-Means
+- Cross-Validation
+- Big Data Processing
+- Cybersecurity Machine Learning
 
-Technologies
+## Repository Structure
 
-Python
-
-PySpark
-
-Apache Spark
-
-Spark MLlib
-
-Random Forest
-
-Decision Tree
-
-PCA
-
-K-Means
-
-Cross-Validation
-
-Big Data Processing
-
-Cybersecurity Machine Learning
-
-Repository Structure
-
+```text
 pyspark-network-intrusion-detection/
 │
 ├── README.md
@@ -178,81 +146,59 @@ pyspark-network-intrusion-detection/
 ├── notebooks/           # Optional exploratory notebooks
 ├── docs/                # Report / figures
 └── results/             # Metrics, plots, exported tables
+```
 
-How to Run
+## How to Run
 
-Install Java, Python, and Apache Spark / PySpark.
-
-Place the dataset in a local data directory.
-
-Update the dataset path in the script or notebook.
-
-Start the PySpark environment.
-
-Run the preprocessing pipeline.
-
-Train and evaluate the classification models.
-
-Run PCA and K-Means analysis.
-
-Review exported metrics and visualisations.
+1. Install Java, Python, and Apache Spark / PySpark.
+2. Place the dataset in a local data directory.
+3. Update the dataset path in the script or notebook.
+4. Start the PySpark environment.
+5. Run the preprocessing pipeline.
+6. Train and evaluate the classification models.
+7. Run PCA and K-Means analysis.
+8. Review exported metrics and visualisations.
 
 Example environment setup:
 
+```bash
 pip install pyspark pandas matplotlib
+```
 
-Key Challenges
+## Key Challenges
 
-Processing millions of rows efficiently
+- Processing millions of rows efficiently
+- Managing Spark transformations and actions
+- Handling class imbalance
+- Avoiding unnecessary recomputation
+- Selecting suitable evaluation metrics for multi-class classification
+- Comparing supervised and unsupervised methods on the same dataset
 
-Managing Spark transformations and actions
+## Future Improvements
 
-Handling class imbalance
+- Compare Logistic Regression and Gradient-Boosted models
+- Add more systematic hyperparameter tuning
+- Evaluate additional imbalance strategies
+- Add feature-importance analysis
+- Build a streaming intrusion-detection pipeline
+- Deploy the model using a REST API
+- Test distributed execution on cloud infrastructure
 
-Avoiding unnecessary recomputation
-
-Selecting suitable evaluation metrics for multi-class classification
-
-Comparing supervised and unsupervised methods on the same dataset
-
-Future Improvements
-
-Compare Logistic Regression and Gradient-Boosted models
-
-Add more systematic hyperparameter tuning
-
-Evaluate additional imbalance strategies
-
-Add feature-importance analysis
-
-Build a streaming intrusion-detection pipeline
-
-Deploy the model using a REST API
-
-Test distributed execution on cloud infrastructure
-
-What I Learned
+## What I Learned
 
 This project strengthened my understanding of:
 
-Distributed data processing
+- Distributed data processing
+- PySpark DataFrame operations
+- MLlib pipelines
+- Multi-class classification
+- Ensemble learning
+- Cross-validation at scale
+- PCA and clustering
+- Working with large cybersecurity datasets
 
-PySpark DataFrame operations
+## Author
 
-MLlib pipelines
-
-Multi-class classification
-
-Ensemble learning
-
-Cross-validation at scale
-
-PCA and clustering
-
-Working with large cybersecurity datasets
-
-Author
-
-Ali Shreif
+**Ali Shreif**
 
 Big Data / Machine Learning / Cybersecurity portfolio project.
